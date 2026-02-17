@@ -49,7 +49,6 @@ const App = () => {
       <Button text="bad" onClick={() => setBad(bad + 1)} />
 
       <h1>statistics</h1>
-
       <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
