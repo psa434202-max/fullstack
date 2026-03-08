@@ -3,7 +3,7 @@ const cors = require('cors')
 
 const app = express()
 
-app.use(cors())        // ⭐ THIS FIXES THE PROBLEM
+app.use(cors())
 app.use(express.json())
 
 let persons = [
@@ -13,11 +13,24 @@ let persons = [
   { id: 4, name: "Mary Poppendieck", number: "39-23-6423122" }
 ]
 
+app.get('/', (req, res) => {
+  res.send('<h1>Phonebook Backend</h1>')
+})
+
 app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
 
-const PORT = 3001
+app.get('/info', (req, res) => {
+  const date = new Date()
+  res.send(`
+    <p>Phonebook has info for ${persons.length} people</p>
+    <p>${date}</p>
+  `)
+})
+
+const PORT = process.env.PORT || 3001
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
